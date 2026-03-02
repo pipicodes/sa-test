@@ -35,6 +35,7 @@ participant BC as Bank Connector (Adapter)
 participant Bank as Bank API
 
 Actor->>GW: POST /transactions/txId/cancel (reason)
+
 GW->>GW: Validate permissions + locate original tx
 GW->>GW: Check eligibility (status/settlement rules)
 
