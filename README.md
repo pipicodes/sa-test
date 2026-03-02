@@ -63,7 +63,7 @@ GW->>Risk: Risk Validate(...)
 Risk-->>GW: decision + score + reasons
 GW->>GW: Store risk_assessment (traceability)
 GW-->>Merchant: RiskResult(decision, score, reasons)
-
+```
 
 
 
