@@ -34,7 +34,7 @@ participant GW as XX Gateway API
 participant BC as Bank Connector (Adapter)
 participant Bank as Bank API
 
-Actor->>GW: POST /transactions/{txId}/cancel (reason)
+Actor->>GW: POST /transactions/txId/cancel (reason)
 GW->>GW: Validate permissions + locate original tx
 GW->>GW: Check eligibility (status/settlement rules)
 
@@ -47,6 +47,7 @@ else Eligible
   BC-->>GW: Normalized cancel response
   GW->>GW: Update status=CANCELED + audit log (who/why)
   GW-->>Actor: CANCELED (normalized)
+end
 ```
 ## Standalone Risk Validation
 ```mermaid
