@@ -24,7 +24,7 @@ else Risk APPROVE
   BC-->>GW: Normalized response
   GW-->>Merchant: Final status
 end
-
+```
 ## Cancellation Flow
 ```mermaid
 sequenceDiagram
@@ -48,8 +48,8 @@ else Eligible
   GW->>GW: Update status=CANCELED + audit log (who/why)
   GW-->>Actor: CANCELED (normalized)
 end
-
-##Standalone Risk Validation
+```
+## Standalone Risk Validation
 ```mermaid
 sequenceDiagram
 autonumber
