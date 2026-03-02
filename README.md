@@ -23,7 +23,6 @@ else Risk APPROVE
   Bank-->>BC: APPROVED/DECLINED
   BC-->>GW: Normalized response
   GW-->>Merchant: Final status
-end
 ```
 ## Cancellation Flow
 ```mermaid
