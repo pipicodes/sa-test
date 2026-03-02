@@ -25,6 +25,7 @@ else Risk APPROVE
   GW-->>Merchant: Final status
 end
 ```
+
 ## Cancellation Flow
 ```mermaid
 sequenceDiagram
@@ -49,6 +50,7 @@ else Eligible
   GW-->>RM: CANCELED (normalized)
 end
 ```
+
 ## Standalone Risk Validation
 ```mermaid
 sequenceDiagram
