@@ -29,25 +29,24 @@ end
 ```mermaid
 sequenceDiagram
 autonumber
-actor Actor as Merchant / Risk Team
-participant GW as XX Gateway API
-participant BC as Bank Connector (Adapter)
-participant Bank as Bank API
+actor RM as Merchant / Risk Team
+participant GW as "XX Gateway"
+participant BC as "Bank Connector"
+participant BK as "Bank"
 
-Actor->>GW: POST /transactions/txId/cancel (reason)
-
+RM->>GW: Cancel request (txId, reason)
 GW->>GW: Validate permissions + locate original tx
 GW->>GW: Check eligibility (status/settlement rules)
 
 alt Not eligible
-  GW-->>Actor: ERROR (CANCEL_NOT_ALLOWED)
+  GW-->>RM: ERROR (CANCEL_NOT_ALLOWED)
 else Eligible
-  GW->>BC: Map cancel request to bank format
-  BC->>Bank: Void/Reversal/Refund (per bank rules)
-  Bank-->>BC: Success/Fail + reference
+  GW->>BC: Map cancel to bank format
+  BC->>BK: Void/Reversal/Refund
+  BK-->>BC: Success/Fail + reference
   BC-->>GW: Normalized cancel response
-  GW->>GW: Update status=CANCELED + audit log (who/why)
-  GW-->>Actor: CANCELED (normalized)
+  GW->>GW: Update status=CANCELED + audit log
+  GW-->>RM: CANCELED (normalized)
 end
 ```
 ## Standalone Risk Validation
