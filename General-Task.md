@@ -1,4 +1,27 @@
-## Country Specific Page (IPGeo)
+# Country-Specific Payment Page (IP-to-Country Lookup)
+
+**Disclaimer:** Vendor-neutral reference diagram for portfolio purposes.  
+No proprietary assessment prompts or confidential company information is included.
+
+## Goal
+Serve a payment page in the user’s local language by resolving country from IP and loading the appropriate i18n bundle.
+
+## Entities (high level)
+- **End User Browser**
+- **Payment Page Frontend**
+- **Payment Page Backend**
+- **IP-to-Country Service** (3rd-party geo lookup)
+- **Localization Store** (i18n bundles / translations)
+- *(Optional)* **Gateway API** (if the page submits payments)
+
+## Flow notes
+- The backend should resolve country using the client IP (more reliable than browser-only).
+- If lookup fails, fallback to **English** and allow a manual language selector.
+- Cache country results briefly to reduce dependency on the external geo service.
+- Avoid logging sensitive payment data on the client or in URL parameters.
+
+---
+## Localization Only (no payment submission)
 
 ```mermaid
 flowchart LR
@@ -11,7 +34,7 @@ flowchart LR
   FE -->|7. Render localized payment form| U
 ```
 
-## With Payment Submission
+## With Payment Submission (end-to-end)
 ```mermaid
 flowchart LR
   U["End User Browser"] -->|1. Open default payment URL| FE["Payment Page Frontend"]
