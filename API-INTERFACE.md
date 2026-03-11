@@ -7,7 +7,6 @@ Responses return stable statuses and error codes for consistent merchant handlin
 
 ## A) Purchase
 **POST** `/v1/transactions/purchase`
-
 ### Request
 ```json
 {
@@ -21,7 +20,9 @@ Responses return stable statuses and error codes for consistent merchant handlin
     "ipAddress": "1.2.3.4"
   }
 }
-## Response (Approved)
+```
+### Response (Approved)
+```json
 {
   "transactionId": "tx_90001",
   "status": "APPROVED",
@@ -30,7 +31,9 @@ Responses return stable statuses and error codes for consistent merchant handlin
   "feeAmount": 10.00,
   "currency": "PHP"
 }
-## Response (Declined)
+```
+### Response (Declined)
+```json
 {
   "transactionId": "tx_90001",
   "status": "DECLINED",
@@ -39,27 +42,29 @@ Responses return stable statuses and error codes for consistent merchant handlin
     "message": "Payment declined"
   }
 }
---
+```
+---
 ## B) Cancellation
 **POST** `/v1/transactions/{transactionId}/cancel`
 
-## Request
+### Request
 ```json
 {
   "reason": "Customer canceled prior to shipping"
 }
-## Response
+```
+### Response
 ```json
 {
   "transactionId": "tx_90001",
   "status": "CANCELED",
   "bankReferenceId": "void_123"
 }
---
+```
+---
 ## C) Risk Validation (standalone)
 **POST** `/v1/risk/validate`
-
-## Request
+### Request
 ```json
 {
   "merchantId": "m_123",
@@ -70,8 +75,8 @@ Responses return stable statuses and error codes for consistent merchant handlin
   "amount": 1000.00,
   "currency": "PHP"
 }
-
-## Response
+```
+### Response
 ```json
 {
   "risk": {
@@ -80,8 +85,9 @@ Responses return stable statuses and error codes for consistent merchant handlin
     "reasons": ["HIGH_AMOUNT", "NEW_DEVICE"]
   }
 }
+```
 
-##Notes
+## Notes
 	•	Use stable error codes for integrations; localize only the message text.
 	•	Use idempotency keys on Purchase to avoid duplicate processing during retries/timeouts.
 	•	Avoid logging sensitive payload fields; prefer tokenized payment references.
