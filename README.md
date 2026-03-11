@@ -126,6 +126,9 @@ Risk-->>GW: decision + score + reasons
 GW->>GW: Store risk assessment for traceability
 GW-->>Merchant: RiskResult decision score reasons
 ```
+
+## Risk Team Console (Wireframe)
+![Risk Team Console](wireframes/risk-console.png)
 ---
 
 ## Notes on “Multi-bank” Support (simple concept)
