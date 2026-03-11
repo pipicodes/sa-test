@@ -131,6 +131,14 @@ GW-->>Merchant: RiskResult decision score reasons
 ![Risk Team Console](wireframes/risk-console.png)
 *Figure: Vendor-neutral Risk Team Console for review + cancel with audit trail.*
 
+**What this screen supports**
+- Filter and review transactions (date, merchant, status, risk score)
+- Open details for investigation (masked customer context + risk reasons)
+- Controlled cancellation (RBAC + reason required)
+- Traceability (status history + audit trail for who/when/why)
+
+Full notes/spec: `RISK-CONSOLE.md`
+
 ---
 
 ## Notes on “Multi-bank” Support (simple concept)
