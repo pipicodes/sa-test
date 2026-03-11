@@ -10,6 +10,9 @@ It focuses on **secure-by-design thinking**, auditability, and operational suppo
 ## Disclaimer
 This is an educational, vendor-neutral portfolio artifact.
 It does **not** include proprietary assessment prompts, internal documentation, confidential information, or production system details from any company.
+
+## Security testing relevance
+These flows highlight common pentest focus areas: authorization boundaries (RBAC/BOLA), business-logic/state validation, error handling, and audit logging.
 ---
 ## Purchase Flow
 
@@ -83,7 +86,7 @@ GW->>GW: Validate permissions and locate original transaction
 GW->>GW: Check eligibility status and settlement rules
 
 alt Not eligible
-  GW-->>RM: ERROR CANCEL_NOT_ALLOWED
+  GW-->>RM: ERROR (CANCEL_NOT_ALLOWED)
 else Eligible
   GW->>BC: Map cancel to bank format
   BC->>Bank: Void or reversal or refund
@@ -131,6 +134,7 @@ Different banks can expose different APIs. A common pattern is to use a **Bank C
 - The gateway keeps a consistent internal transaction model
 - Each connector maps the standard request/response to a specific bank format
 - This keeps merchant integration stable even when banks differ
+- Routing can be based on country, merchant configuration, or bank availability.
 
 
 
